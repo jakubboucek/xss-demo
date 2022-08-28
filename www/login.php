@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
+session_start();
+
 $error = null;
 if (isset($_POST['signin'])) {
     $pass = $_POST['pass'] ?? '';
 
     if (password_verify($pass, '$2y$10$d9VZXoJ4sHhi7V5CLUM/c.SeTCAtEKmYFRQFO9QJeAWs7.vU/w2ti')) {
         // Login
-        session_start();
         $_SESSION['admin'] = true;
         // Redirect to admin
         header('Location:/admin.php', true, 303);
